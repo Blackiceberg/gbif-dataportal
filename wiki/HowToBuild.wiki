@@ -40,7 +40,7 @@ The steps that need to be followed are:
 
 == 4. Deploy and link the web application with the index database ==
 
-To deploy the web application you have build you need to take the portal.war file (found at portal-web/target/portal.war) and place it into the webapplication folders in your application server. In [http://tomcat.apache.org Tomcat] this will be found at TOMCAT_HOME/webapps/. You might need to start your application server in order to _expand_ the WAR file.
+To deploy the web application you have built you need to take the portal.war file (found at portal-web/target/portal.war) and place it into the webapplication folders in your application server. In [http://tomcat.apache.org Tomcat] this will be found at TOMCAT_HOME/webapps/. You might need to start your application server in order to _expand_ the WAR file.
 
 Once you have your web application into your application server, you need to *link* the data portal with the created index database. To do this you need to go into your _expanded_ web application folder to the following file:
 
