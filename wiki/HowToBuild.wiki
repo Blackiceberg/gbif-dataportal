@@ -19,9 +19,9 @@ The instructions for checking out from Google Code's SVN can be found [http://co
 
 If you need to build the web application for the first time, you need to execute the script *first-build-all.sh* found on the portal-web project (portal-web/first-build-all.sh)
 
-After the first build, you may use the *build-all.sh* (portal-web/build-all.sh)
+After the first build, you may use the *build-all.sh* script located at portal-web/build-all.sh
 
-After this is done, there will be a *portal.war* that has been generated to be deployed on an application server. 
+After this is done, there will be a *portal.war* file that has been generated to be deployed on an application server (we will refer to this WAR file later in the documentation) 
 
 == 3. Creating the index backend database ==
 
@@ -35,8 +35,8 @@ On the portal-core project there are two files:
 The steps that need to be followed are:
 
  # mysql> create database portal;
- # mysql -u [username] -p[password] < PATH_TO_PORTAL_WEB/db/portal.ddl
- # mysql -u [username] -p[password] < PATH_TO_PORTAL_WEB/db/initPortal.ddl
+ # mysql -u USERNAME -pPASSWORD < PATH_TO_PORTAL_WEB/db/portal.ddl
+ # mysql -u USERNAME -pPASSWORD < PATH_TO_PORTAL_WEB/db/initPortal.ddl
 
 == 4. Deploy and link the web application with the index database ==
 
