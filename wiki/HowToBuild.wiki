@@ -71,6 +71,7 @@ In here you will find the following code, which you need to configure according 
 
 
 `# Database credentials for the database that is used for writing the log entries `
+
 `logDataSource.username=root`
 
 `logDataSource.password=`
@@ -79,7 +80,7 @@ In here you will find the following code, which you need to configure according 
 
 
 
-After doing this you should be able to access your newly created data portal at [http://localhost:8080 http://localhost:8080]
+After doing this you need to restart your application server and should be able to access your newly created data portal at [http://localhost:8080 http://localhost:8080]
 
 
 
