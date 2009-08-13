@@ -3,7 +3,7 @@
 
 = How To Build =
 
-The following instructions will guide you through the compiling, packaging and deployment instructions for the data portal's web application.
+The following instructions will guide you through the compiling, packaging and deployment process for the data portal's web application.
 
 == 1. Checking out the source code ==
 
