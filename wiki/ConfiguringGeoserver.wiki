@@ -1,9 +1,18 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
 
 ==Installing GeoServer==
-*Get GeoServer from http://geoserver.org/display/GEOS/Download according the preferred installation method.
+
+There are different ways to install Geoserver: 
+* Install Geoserver as a WAR in Apache Tomcat
+* Install Geoserver as a binary file (OS independent)
+* Install Geoserver using a Windows installer
+
+
 ===Configuring system variables===
-===Installing as a WAR in Apache tomcat (recomended)===
+===Installing as a WAR in Apache tomcat [recomended]===
+
+*Get GeoServer from http://geoserver.org/display/GEOS/Download according the preferred installation method.
+
 *Changing port
 ===Installing as Binary (OS independent)===
 *Changing port
@@ -21,11 +30,372 @@
 ====tab_density store====
 ===Styles===
 ====country_borders style====
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd"> 
+  <NamedLayer> 
+    <Name>Countries Borders</Name> 
+    <UserStyle> 
+      <Title>Countries Borders</Title> 
+      <Abstract>A style that just draws a 1 pixel stroke around each countries borders</Abstract> 
+      <FeatureTypeStyle> 
+        <Rule> 
+          <Title>Polygon</Title> 
+          <PolygonSymbolizer> 
+            <Stroke> 
+              <CssParameter name="stroke">#006600</CssParameter> 
+              <CssParameter name="stroke-width">1</CssParameter> 
+            </Stroke> 
+          </PolygonSymbolizer> 
+        </Rule> 
+      </FeatureTypeStyle> 
+    </UserStyle> 
+  </NamedLayer> 
+</StyledLayerDescriptor> 
+}}}
 ====country_fill style====
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd"> 
+  <NamedLayer> 
+    <Name>Country Polygons Fill</Name> 
+    <UserStyle> 
+      <Title>Country Polygons style</Title> 
+      <Abstract>A style that fills the countries polygons with a specific color</Abstract> 
+      <FeatureTypeStyle> 
+        <Rule> 
+          <Title>Polygon</Title> 
+          <PolygonSymbolizer> 
+            <Fill> 
+              <CssParameter name="fill">#003333</CssParameter> 
+              <CssParameter name="fill-opacity"><ogc:Literal>1</ogc:Literal></CssParameter>               
+            </Fill> 
+          </PolygonSymbolizer> 
+        </Rule> 
+      </FeatureTypeStyle> 
+    </UserStyle> 
+  </NamedLayer> 
+</StyledLayerDescriptor>
+}}}
 ====country_names style====
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd"> 
+  <NamedLayer> 
+    <Name>Country Names</Name> 
+    <UserStyle> 
+      <Title>Country Names</Title> 
+      <Abstract>Style that renders the names of the countries on the map</Abstract> 
+      <FeatureTypeStyle> 
+  <Rule> 
+  <TextSymbolizer> 
+    <Label> 
+      <ogc:PropertyName>CNTRY_NAME</ogc:PropertyName> 
+    </Label>   
+    <Font> 
+      <CssParameter name="font-family"><ogc:Literal>Lucida Sans</ogc:Literal></CssParameter> 
+      <CssParameter name="font-style"><ogc:Literal>normal</ogc:Literal></CssParameter> 
+      <CssParameter name="font-size"><ogc:Literal>10.0</ogc:Literal></CssParameter> 
+      <CssParameter name="font-weight"><ogc:Literal>bold</ogc:Literal></CssParameter> 
+    </Font>   
+<LabelPlacement> 
+<PointPlacement> 
+<AnchorPoint> 
+<AnchorPointX>0.5</AnchorPointX> 
+<AnchorPointY>0.5</AnchorPointY> 
+</AnchorPoint> 
+</PointPlacement> 
+</LabelPlacement> 
+    <Fill> 
+      <CssParameter name="fill">#6e8686</CssParameter> 
+    </Fill> 
+  </TextSymbolizer> 
+  </Rule> 
+      </FeatureTypeStyle> 
+    </UserStyle> 
+  </NamedLayer> 
+</StyledLayerDescriptor>
+}}}
 ====density_layer style====
+{{{
+<?xml version="1.0" encoding="UTF-8"?> 
+<StyledLayerDescriptor version="1.0.0" 
+ xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
+ xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
+ xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+ <NamedLayer> 
+   <Name>densityLayer</Name> 
+   <UserStyle> 
+     <FeatureTypeStyle> 
+       <!-- If it is a point data, render as such --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:PropertyIsEqualTo> 
+             <ogc:Function name="geometryType"> 
+               <ogc:PropertyName>geom</ogc:PropertyName> 
+             </ogc:Function> 
+             <ogc:Literal>Point</ogc:Literal> 
+           </ogc:PropertyIsEqualTo> 
+         </ogc:Filter> 
+         <PointSymbolizer> 
+           <Graphic> 
+             <Mark> 
+               <WellKnownName>circle</WellKnownName>
+               <Fill> 
+                 <CssParameter name="fill">#cc0000</CssParameter> 
+                 <CssParameter name="fill-opacity">1.0</CssParameter> 
+               </Fill> 
+             </Mark> 
+             <Size>6</Size> 
+           </Graphic> 
+         </PointSymbolizer> 
+       </Rule> 
+       <!-- 1-9 --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:And> 
+             <ogc:PropertyIsGreaterThanOrEqualTo> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>1</ogc:Literal> 
+             </ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyIsLessThan> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>10</ogc:Literal> 
+             </ogc:PropertyIsLessThan> 
+           </ogc:And> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#ffff00</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#ffff00</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+       <!-- 10-99 --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:And> 
+             <ogc:PropertyIsGreaterThanOrEqualTo> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>10</ogc:Literal> 
+             </ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyIsLessThan> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>100</ogc:Literal> 
+             </ogc:PropertyIsLessThan> 
+           </ogc:And> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#ffcc00</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#ffcc00</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+       <!-- 100-999 --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:And> 
+             <ogc:PropertyIsGreaterThanOrEqualTo> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>100</ogc:Literal> 
+             </ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyIsLessThan> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>1000</ogc:Literal> 
+             </ogc:PropertyIsLessThan> 
+           </ogc:And> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#ff9900</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#ff9900</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+       <!-- 1000-9999 --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:And> 
+             <ogc:PropertyIsGreaterThanOrEqualTo> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>1000</ogc:Literal> 
+             </ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyIsLessThan> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>10000</ogc:Literal> 
+             </ogc:PropertyIsLessThan> 
+           </ogc:And> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#ff6600</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#ff6600</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+       <!-- 10000-99999 --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:And> 
+             <ogc:PropertyIsGreaterThanOrEqualTo> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>10000</ogc:Literal> 
+             </ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyIsLessThan> 
+               <ogc:PropertyName>count</ogc:PropertyName> 
+               <ogc:Literal>100000</ogc:Literal> 
+             </ogc:PropertyIsLessThan> 
+           </ogc:And> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#ff3300</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#ff3300</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+       <!-- 100000+ --> 
+       <Rule> 
+         <ogc:Filter> 
+           <ogc:PropertyIsGreaterThanOrEqualTo> 
+             <ogc:PropertyName>count</ogc:PropertyName> 
+             <ogc:Literal>100000</ogc:Literal> 
+           </ogc:PropertyIsGreaterThanOrEqualTo> 
+         </ogc:Filter> 
+         <PolygonSymbolizer> 
+           <Fill> 
+             <CssParameter name="fill"> 
+               <ogc:Literal>#cc0000</ogc:Literal> 
+             </CssParameter> 
+             <CssParameter name="fill-opacity"> 
+               <ogc:Literal>1</ogc:Literal> 
+             </CssParameter> 
+           </Fill> 
+          <Stroke> 
+            <CssParameter name="stroke">#cc0000</CssParameter> 
+            <CssParameter name="stroke-width">0</CssParameter> 
+          </Stroke> 
+         </PolygonSymbolizer> 
+       </Rule> 
+     </FeatureTypeStyle> 
+   </UserStyle> 
+ </NamedLayer> 
+</StyledLayerDescriptor> 
+}}}
 ====country_borders_black style====
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+ xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
+ <NamedLayer>
+   <Name>Countries Borders</Name>
+   <UserStyle>
+     <Title>Countries Borders</Title>
+     <Abstract>A style that just draws a 1 pixel stroke around each countries borders</Abstract>
+     <FeatureTypeStyle>
+       <Rule>
+         <Title>Polygon</Title>
+         <PolygonSymbolizer>
+           <Stroke>
+             <CssParameter name="stroke">#000000</CssParameter>
+             <CssParameter name="stroke-width">1</CssParameter>
+           </Stroke>
+         </PolygonSymbolizer>
+       </Rule>
+     </FeatureTypeStyle>
+   </UserStyle>
+ </NamedLayer>
+</StyledLayerDescriptor>
+}}}
 ====country_names_blue style====
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+ xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
+ <NamedLayer>
+   <Name>Country Names</Name>
+   <UserStyle>
+     <Title>Country Names</Title>
+     <Abstract>Style that renders the names of the countries on the map</Abstract>
+     <FeatureTypeStyle>
+ <Rule>
+ <TextSymbolizer>
+   <Label>
+     <ogc:PropertyName>CNTRY_NAME</ogc:PropertyName>
+   </Label>
+   <Font>
+     <CssParameter name="font-family"><ogc:Literal>Lucida Sans</ogc:Literal></CssParameter>
+     <CssParameter name="font-style"><ogc:Literal>normal</ogc:Literal></CssParameter>
+     <CssParameter name="font-size"><ogc:Literal>13.0</ogc:Literal></CssParameter>
+     <CssParameter name="font-weight"><ogc:Literal>bold</ogc:Literal></CssParameter>
+   </Font>
+ <LabelPlacement>
+   <PointPlacement>
+     <AnchorPoint>
+       <AnchorPointX>0.5</AnchorPointX>
+       <AnchorPointY>0.5</AnchorPointY>
+     </AnchorPoint>
+   </PointPlacement>
+ </LabelPlacement>
+   <Fill>
+     <CssParameter name="fill">#6666FF </CssParameter>
+   </Fill>
+ </TextSymbolizer>
+ </Rule>
+     </FeatureTypeStyle>
+   </UserStyle>
+ </NamedLayer>
+</StyledLayerDescriptor>
+}}}
 ===Layers===
 ====country_borders layer====
 ====country_fill layer====
