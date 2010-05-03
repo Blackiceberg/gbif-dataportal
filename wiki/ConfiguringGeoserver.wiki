@@ -1,10 +1,38 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
 
 ==Installing GeoServer==
-*Get GeoServer from http://geoserver.org/display/GEOS/Download
-
+*Get GeoServer from http://geoserver.org/display/GEOS/Download according the preferred installation method.
+===Configuring system variables===
+===Installing as a WAR in Apache tomcat (recomended)===
+*Changing port
+===Installing as Binary (OS independent)===
+*Changing port
+===Installing as Windows Application===
+*Changing port
 ==Resources & libraries==
-
+===Shapefile===
+===The gt-ala-tab library===
 ==Workspace, stores, styles & layers==
+===Workspace===
+===Stores===
+====country_borders store====
+====country_fill store====
+====country_names store====
+====tab_density store====
+===Styles===
+====country_borders style====
+====country_fill style====
+====country_names style====
+====density_layer style====
+====country_borders_black style====
+====country_names_blue style====
+===Layers===
+====country_borders layer====
+====country_fill layer====
+====country_names layer====
+====tabDensityLayer layer====
+===Testing Layers===
+
+
 
 updating...
