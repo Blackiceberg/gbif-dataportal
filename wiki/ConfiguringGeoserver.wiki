@@ -1,6 +1,10 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
 
-==Instaling GeoServer==
+==Installing GeoServer==
 *Get GeoServer from http://geoserver.org/display/GEOS/Download
+
+==Resources & libraries==
+
+==Workspace, stores, styles & layers==
 
 updating...
