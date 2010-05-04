@@ -36,9 +36,25 @@ Configure the following variables according to your personal system configuratio
  * Start Tomcat
 
 ===Installing as Binary (OS independent)===
-*Changing port
-===Installing as Windows Application===
-*Changing port
+
+Using this way, the Geoserver use the jetty server to run. (Not Tomcat)
+
+ * Get the bin folder from http://geoserver.org/display/GEOS/Stable (Binary - OS independent)
+ In this case we are going to use [http://downloads.sourceforge.net/geoserver/geoserver-2.0.1-bin.zip Geoserver 2.0.1]
+
+ * Unzip the folder and place it in a location that you consider correctly.
+ 
+ * Run $GEOSERVER/bin/startup.bat or $GEOSERVER/bin/startup.sh according to your OS.
+ 
+ * Go URL http://localhost:8080/geoserver and sign in by default using username: _admin_ password: _geoserver_
+ 
+====Changing port====
+ * Shutdown Jetty server running $GEOSERVER/bin/shutdown.sh or $GEOSERVER/bin/shutdown.bat
+ * Open file $GEOSERVER/etc/jetty.xml
+ * Search line {{{<Set name="port">8081</Set>}}} and change the default port.
+ * Start Jetty
+
+
 ==Resources & libraries==
 ===Shapefile===
 Copy the files corresponding to the country shape file
@@ -47,7 +63,7 @@ to the shapefiles directory of the GeoServer {{{$GeoServer\data_dir\data\shapefi
 
 
 ===The gt-ala-tab library===
-Copy the library [http://gbif-dataportal.googlecode.com/issues/attachment?aid=-7277987642525285492&name=gt-ala-tab-1.0-SNAPSHOT.jar&token=07e4864ec70f3d077b211eb2ec317d37 gt-ala-tab-1.0-SNAPSHOT.jar] to the libraries directory of the GeoServer {{{$GeoServer\geoserver\WEB-INF\lib}}}
+Copy the library [http://gbif-dataportal.googlecode.com/issues/attachment?aid=-7277987642525285492&name=gt-ala-tab-1.0-SNAPSHOT.jar&token=07e4864ec70f3d077b211eb2ec317d37 http://code.google.com/hosting/images/paperclip.gif][http://gbif-dataportal.googlecode.com/issues/attachment?aid=-7277987642525285492&name=gt-ala-tab-1.0-SNAPSHOT.jar&token=07e4864ec70f3d077b211eb2ec317d37 gt-ala-tab-1.0-SNAPSHOT.jar] to the libraries directory of the GeoServer {{{$GeoServer\geoserver\WEB-INF\lib}}}
 ==Workspace, stores, styles & layers==
 ===Workspace===
 Create the Workspace named _gbif_ with URI http://www.gbif.org and set it as default workspace
