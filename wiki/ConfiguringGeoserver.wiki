@@ -10,9 +10,10 @@ There are different ways to install Geoserver:
 
 
 ===Configuring system variables===
-Configure the following variables according to your OS and installation paths.
- * JAVA_HOME (depending of your OS)
- * JAVA_OPTS="-XX:PermSize=512M -Xmx1g -Djava.awt.headless=true -Dcom.sun.management.jmxremote"
+Configure the following variables according to your personal system configuration.
+ * JAVA_HOME=_Your JAVA installation path_
+ * JAVA_OPTS={{{"-XX:PermSize=512M -Xmx1g -Djava.awt.headless=true -Dcom.sun.management.jmxremote"}}}
+
 
 ===Installing as a WAR in Apache tomcat (recomended)===
 
@@ -26,7 +27,7 @@ Configure the following variables according to your OS and installation paths.
 
  * Start Tomcat running $TOMCAT/bin/startup.sh or  $TOMCAT/bin/startup.bat according to your OS.
 
- * Go URL http://localhost:8080/geoserver and sign in by default using username: *admin* password: *geoserver*
+ * Go URL http://localhost:8080/geoserver and sign in by default using username: _admin_ password: _geoserver_
 
 ====Changing port====
  * Shutdown Tomcat running $TOMCAT/bin/shutdown.sh or $TOMCAT/bin/shutdown.bat
@@ -40,17 +41,34 @@ Configure the following variables according to your OS and installation paths.
 *Changing port
 ==Resources & libraries==
 ===Shapefile===
+Copy the files corresponding to the country shape file
+ _country.dbf  country.fix  country.ORG.dbf  country.prj  country.qix  country.shp  country.shx_
+to the shapefiles directory of the GeoServer {{{$GeoServer\data_dir\data\shapefiles}}}
+
+
 ===The gt-ala-tab library===
+Copy the library {{{gt-ala-tab-1.0-SNAPSHOT.jar}}} to the libraries directory of the GeoServer {{{$GeoServer\geoserver\WEB-INF\lib}}}
 ==Workspace, stores, styles & layers==
 ===Workspace===
+Create the Workspace named _gbif_ with URI http://www.gbif.org and set it as default workspace
 ===Stores===
 ====country stores====
+Add the stores type _Shapefile_ with names _country_borders_, _country_fill_ and _country_names_. With the following parameters:
+ * Workspace: _gbif_
+ * URL: {{{file:data/shapefiles/country.shp}}}
 ====tab_density store====
+Add the store _tab_density_ of type _Tab Url DataStore_.With the following parameters:
+ * Workspace: _gbif_
+ * minx: -180
+ * miny: -90
+ * maxx: 180
+ * maxy: 90
+
 ===Styles===
 Add the following SLD styles. Click on the _validate_ button to verify the style is a valid SLD document.
 
-====country_borders style====
-{{{
+ ====country_borders style====
+ {{{
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -75,8 +93,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
   </NamedLayer> 
 </StyledLayerDescriptor> 
 }}}
-====country_fill style====
-{{{
+ ====country_fill style====
+ {{{
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -101,8 +119,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
   </NamedLayer> 
 </StyledLayerDescriptor>
 }}}
-====country_names style====
-{{{
+ ====country_names style====
+ {{{
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" 
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -142,8 +160,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
   </NamedLayer> 
 </StyledLayerDescriptor>
 }}}
-====density_layer style====
-{{{
+ ====density_layer style====
+ {{{
 <?xml version="1.0" encoding="UTF-8"?> 
 <StyledLayerDescriptor version="1.0.0" 
  xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
@@ -349,8 +367,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
  </NamedLayer> 
 </StyledLayerDescriptor> 
 }}}
-====country_borders_black style====
-{{{
+ ====country_borders_black style====
+ {{{
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -375,8 +393,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
  </NamedLayer>
 </StyledLayerDescriptor>
 }}}
-====country_names_blue style====
-{{{
+ ====country_names_blue style====
+ {{{
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -415,8 +433,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
    </UserStyle>
  </NamedLayer>
 </StyledLayerDescriptor>
-}}}
-===Layers===
+ }}}
+ ===Layers===
 Add the following layers in the layers menu
 ====Adding the country layers====
 Add the layers from the stores ciat:country_borders, ciat:country_fill and ciat:country_names, respectively with the names _country_borders_, _country_fill_ y _country_names_. With the following parameters:
