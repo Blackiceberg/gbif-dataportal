@@ -47,7 +47,7 @@ to the shapefiles directory of the GeoServer {{{$GeoServer\data_dir\data\shapefi
 
 
 ===The gt-ala-tab library===
-Copy the library {{{gt-ala-tab-1.0-SNAPSHOT.jar}}} to the libraries directory of the GeoServer {{{$GeoServer\geoserver\WEB-INF\lib}}}
+Copy the library [http://gbif-dataportal.googlecode.com/issues/attachment?aid=-7277987642525285492&name=gt-ala-tab-1.0-SNAPSHOT.jar&token=07e4864ec70f3d077b211eb2ec317d37 gt-ala-tab-1.0-SNAPSHOT.jar] to the libraries directory of the GeoServer {{{$GeoServer\geoserver\WEB-INF\lib}}}
 ==Workspace, stores, styles & layers==
 ===Workspace===
 Create the Workspace named _gbif_ with URI http://www.gbif.org and set it as default workspace
@@ -433,8 +433,8 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
    </UserStyle>
  </NamedLayer>
 </StyledLayerDescriptor>
- }}}
- ===Layers===
+}}}
+===Layers===
 Add the following layers in the layers menu
 ====Adding the country layers====
 Add the layers from the stores ciat:country_borders, ciat:country_fill and ciat:country_names, respectively with the names _country_borders_, _country_fill_ y _country_names_. With the following parameters:
@@ -462,7 +462,3 @@ Add the layer _tabDensityLayer_ from the store ciat:tab_density. With the follow
 
 ====Testing the layers====
 To test if the country layers are working well, enter to the GWC GeoWebCache, then to "_A list of all the layers and automatic demos_" and check the behavior of the country layers, they should work according to their names. 
-
-
-
-updating...
