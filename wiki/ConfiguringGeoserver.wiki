@@ -1,12 +1,11 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
 
-==Installing [http://geoserver.org/display/GEOS/What+is+Geoserver Geoserver]==
+= http://geoserver.org//download/attachments/19005441/global.logo?version=1&parameter=finish.png Installing [http://geoserver.org/display/GEOS/What+is+Geoserver Geoserver]=
 
 There are different ways to install Geoserver: 
 
  * Install Geoserver as a WAR in Apache Tomcat
  * Install Geoserver as a binary file (OS independent)
- * Install Geoserver using a Windows installer
 
 
 ===Configuring system variables===
