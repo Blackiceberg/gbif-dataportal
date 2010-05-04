@@ -1,6 +1,6 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
 
-==Installing GeoServer==
+==Installing [http://geoserver.org/display/GEOS/What+is+Geoserver Geoserver]==
 
 There are different ways to install Geoserver: 
 
@@ -10,45 +10,45 @@ There are different ways to install Geoserver:
 
 
 ===Configuring system variables===
-Configure the following variables according to your personal system configuration.
+Configure the following variables according to your system configuration.
  * JAVA_HOME=_Your JAVA installation path_
  * JAVA_OPTS={{{"-XX:PermSize=512M -Xmx1g -Djava.awt.headless=true -Dcom.sun.management.jmxremote"}}}
 
 
-===Installing as a WAR in Apache tomcat (recomended)===
+===Install Geoserver as a WAR in Apache tomcat (recomended)===
 
  * Get the Apache Tomcat from http://tomcat.apache.org/ (Binary Distributions - Core)
  In this case we are going to use [http://apache.multihomed.net/tomcat/tomcat-6/v6.0.26/bin/apache-tomcat-6.0.26.zip Apache Tomcat Zipped Binary Distribution 6.0.26].
 
- * Get WAR file from http://geoserver.org/display/GEOS/Stable (Web Archive Format)
+ * Get the Geoserver WAR file from http://geoserver.org/display/GEOS/Stable (Web Archive Format)
  In this case we are going to use [http://downloads.sourceforge.net/geoserver/geoserver-2.0.1-war.zip Geoserver 2.0.1]
 
- * Unzip the tomcat file and place it in a location that you consider correctly and put the Geoserver WAR file in the folder $TOMCAT/webapps/geoserver.war
+ * Unzip the tomcat file and place it in a location of your choice and put the Geoserver WAR file in the folder $TOMCAT/webapps/geoserver.war
 
- * Start Tomcat running $TOMCAT/bin/startup.sh or  $TOMCAT/bin/startup.bat according to your OS.
+ * Start Tomcat by running $TOMCAT/bin/startup.sh or  $TOMCAT/bin/startup.bat according to your OS.
 
- * Go URL http://localhost:8080/geoserver and sign in by default using username: _admin_ password: _geoserver_
+ * Go to URL http://localhost:8080/geoserver and sign in using the default username: _admin_ password: _geoserver_
 
-====Changing port====
+====How to change the port====
  * Shutdown Tomcat running $TOMCAT/bin/shutdown.sh or $TOMCAT/bin/shutdown.bat
  * Open file $TOMCAT/conf/server.xml
- * Search line {{{<Connector port="8080" protocol=...}}} and change the default port.
+ * Search line {{{<Connector port="8080" protocol=...}}} and change the default to your convenience port.
  * Start Tomcat
 
-===Installing as Binary (OS independent)===
+===Install GeoServer as Binary (OS independent)===
 
-Using this way, the Geoserver use the jetty server to run. (Not Tomcat)
+If you install Geoserver as Binary it will be run by a jetty server rather than Tomcat.
 
  * Get the bin folder from http://geoserver.org/display/GEOS/Stable (Binary - OS independent)
  In this case we are going to use [http://downloads.sourceforge.net/geoserver/geoserver-2.0.1-bin.zip Geoserver 2.0.1]
 
- * Unzip the folder and place it in a location that you consider correctly.
+ * Unzip the folder and place it in a location of your choice.
  
  * Run $GEOSERVER/bin/startup.bat or $GEOSERVER/bin/startup.sh according to your OS.
  
- * Go URL http://localhost:8080/geoserver and sign in by default using username: _admin_ password: _geoserver_
+ * Go to URL http://localhost:8080/geoserver and sign in using the default username: _admin_ password: _geoserver_
  
-====Changing port====
+====How to change the port====
  * Shutdown Jetty server running $GEOSERVER/bin/shutdown.sh or $GEOSERVER/bin/shutdown.bat
  * Open file $GEOSERVER/etc/jetty.xml
  * Search line {{{<Set name="port">8081</Set>}}} and change the default port.
@@ -453,7 +453,7 @@ Add the following SLD styles. Click on the _validate_ button to verify the style
 ===Layers===
 Add the following layers in the layers menu
 ====Adding the country layers====
-Add the layers from the stores ciat:country_borders, ciat:country_fill and ciat:country_names, respectively with the names _country_borders_, _country_fill_ y _country_names_. With the following parameters:
+Add the layers from the stores gbif:country_borders, gbif:country_fill and gbif:country_names, respectively with the names _country_borders_, _country_fill_ y _country_names_. With the following parameters:
 
 *Data tab*
  * Coordinate Reference Systems: The Native SRS is _UNKNOWN_ and the Declared SRS is _EPSG:4326_.
@@ -462,10 +462,10 @@ Add the layers from the stores ciat:country_borders, ciat:country_fill and ciat:
 ||-180||-90||180||83,623||
 
 *Publishing tab*
- * Default Title: Set the Default Style the respectively according to the layer name.
+ * Default Title: Set the Default Style as the respective layer name.
 
 ====Adding the tabDensityLayer layer====
-Add the layer _tabDensityLayer_ from the store ciat:tab_density. With the following parameters.
+Add the layer _tabDensityLayer_ from the store gbif:tab_density. With the following parameters.
 
 *Data tab*
  * Coordinate Reference Systems: The Declared SRS is _EPSG:4326_.
@@ -474,7 +474,7 @@ Add the layer _tabDensityLayer_ from the store ciat:tab_density. With the follow
 ||-180||-90||180||90||
 
 *Publishing tab*
- * Default Title: Set the Default Style the respectively according to the layer name.
+ * Default Title: Set the Default Style as the respective layer name.
 
-====Testing the layers====
+====Test the layers====
 To test if the country layers are working well, enter to the GWC GeoWebCache, then to "_A list of all the layers and automatic demos_" and check the behavior of the country layers, they should work according to their names. 
