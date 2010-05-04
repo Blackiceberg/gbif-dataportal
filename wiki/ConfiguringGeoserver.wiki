@@ -3,17 +3,37 @@
 ==Installing GeoServer==
 
 There are different ways to install Geoserver: 
-* Install Geoserver as a WAR in Apache Tomcat
-* Install Geoserver as a binary file (OS independent)
-* Install Geoserver using a Windows installer
+
+ * Install Geoserver as a WAR in Apache Tomcat
+ * Install Geoserver as a binary file (OS independent)
+ * Install Geoserver using a Windows installer
 
 
 ===Configuring system variables===
-===Installing as a WAR in Apache tomcat [recomended]===
+Configure the following variables according to your OS and installation paths.
+ * JAVA_HOME (depending of your OS)
+ * JAVA_OPTS="-XX:PermSize=512M -Xmx1g -Djava.awt.headless=true -Dcom.sun.management.jmxremote"
 
-*Get GeoServer from http://geoserver.org/display/GEOS/Download according the preferred installation method.
+===Installing as a WAR in Apache tomcat (recomended)===
 
-*Changing port
+ * Get the Apache Tomcat from http://tomcat.apache.org/ (Binary Distributions - Core)
+ In this case we are going to use [http://apache.multihomed.net/tomcat/tomcat-6/v6.0.26/bin/apache-tomcat-6.0.26.zip Apache Tomcat Zipped Binary Distribution 6.0.26].
+
+ * Get WAR file from http://geoserver.org/display/GEOS/Stable (Web Archive Format)
+ In this case we are going to use [http://downloads.sourceforge.net/geoserver/geoserver-2.0.1-war.zip Geoserver 2.0.1]
+
+ * Unzip the tomcat file and place it in a location that you consider correctly and put the Geoserver WAR file in the folder $TOMCAT/webapps/geoserver.war
+
+ * Start Tomcat running $TOMCAT/bin/startup.sh or  $TOMCAT/bin/startup.bat according to your OS.
+
+ * Go URL http://localhost:8080/geoserver and sign in by default using username: *admin* password: *geoserver*
+
+====Changing port====
+ * Shutdown Tomcat running $TOMCAT/bin/shutdown.sh or $TOMCAT/bin/shutdown.bat
+ * Open file $TOMCAT/conf/server.xml
+ * Search line {{{<Connector port="8080" protocol=...}}} and change the default port.
+ * Start Tomcat
+
 ===Installing as Binary (OS independent)===
 *Changing port
 ===Installing as Windows Application===
@@ -24,11 +44,11 @@ There are different ways to install Geoserver:
 ==Workspace, stores, styles & layers==
 ===Workspace===
 ===Stores===
-====country_borders store====
-====country_fill store====
-====country_names store====
+====country stores====
 ====tab_density store====
 ===Styles===
+Add the following SLD styles. Click on the _validate_ button to verify the style is a valid SLD document.
+
 ====country_borders style====
 {{{
 <?xml version="1.0" encoding="ISO-8859-1"?> 
@@ -397,11 +417,33 @@ There are different ways to install Geoserver:
 </StyledLayerDescriptor>
 }}}
 ===Layers===
-====country_borders layer====
-====country_fill layer====
-====country_names layer====
-====tabDensityLayer layer====
-===Testing Layers===
+Add the following layers in the layers menu
+====Adding the country layers====
+Add the layers from the stores ciat:country_borders, ciat:country_fill and ciat:country_names, respectively with the names _country_borders_, _country_fill_ y _country_names_. With the following parameters:
+
+*Data tab*
+ * Coordinate Reference Systems: The Native SRS is _UNKNOWN_ and the Declared SRS is _EPSG:4326_.
+ * Bounding Boxes: In both Native Bounding Box and Lat/Lon Bounding Box, set the following:
+||Min X||Min Y||Max X||Max Y||
+||-180||-90||180||83,623||
+
+*Publishing tab*
+ * Default Title: Set the Default Style the respectively according to the layer name.
+
+====Adding the tabDensityLayer layer====
+Add the layer _tabDensityLayer_ from the store ciat:tab_density. With the following parameters.
+
+*Data tab*
+ * Coordinate Reference Systems: The Declared SRS is _EPSG:4326_.
+ * Bounding Boxes: In both Native Bounding Box and Lat/Lon Bounding Box, set the following:
+||Min X||Min Y||Max X||Max Y||
+||-180||-90||180||90||
+
+*Publishing tab*
+ * Default Title: Set the Default Style the respectively according to the layer name.
+
+====Testing the layers====
+To test if the country layers are working well, enter to the GWC GeoWebCache, then to "_A list of all the layers and automatic demos_" and check the behavior of the country layers, they should work according to their names. 
 
 
 
