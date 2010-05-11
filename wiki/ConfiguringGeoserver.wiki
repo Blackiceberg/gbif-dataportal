@@ -1,4 +1,5 @@
 #summary How to configure the elements of the GeoServer to draw the portal maps
+#labels Featured
 
 = http://geoserver.org//download/attachments/19005441/global.logo?version=1&parameter=finish.png Installing [http://geoserver.org/display/GEOS/What+is+Geoserver Geoserver]=
 
