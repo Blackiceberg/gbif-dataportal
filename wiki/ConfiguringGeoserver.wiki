@@ -9,13 +9,13 @@ There are different ways to install Geoserver:
  * Install Geoserver as a binary file (OS independent)
 
 
-===Configuring system variables===
+===Configure the system variables===
 Configure the following variables according to your system configuration.
  * JAVA_HOME=_Your JAVA installation path_
  * JAVA_OPTS={{{"-XX:PermSize=512M -Xmx1g -Djava.awt.headless=true -Dcom.sun.management.jmxremote"}}}
 
 
-===Install Geoserver as a WAR in Apache tomcat (recomended)===
+===Install Geoserver as a WAR in Apache tomcat (recommended)===
 
  * Get the Apache Tomcat from http://tomcat.apache.org/ (Binary Distributions - Core)
  In this case we are going to use [http://apache.multihomed.net/tomcat/tomcat-6/v6.0.26/bin/apache-tomcat-6.0.26.zip Apache Tomcat Zipped Binary Distribution 6.0.26].
@@ -32,7 +32,7 @@ Configure the following variables according to your system configuration.
 ====How to change the port====
  * Shutdown Tomcat running $TOMCAT/bin/shutdown.sh or $TOMCAT/bin/shutdown.bat
  * Open file $TOMCAT/conf/server.xml
- * Search line {{{<Connector port="8080" protocol=...}}} and change the default to your convenience port.
+ * Search line {{{<Connector port="8080" protocol="HTTP/1.1"}}} and change the default to your convenience port.
  * Start Tomcat
 
 ===Install GeoServer as Binary (OS independent)===
