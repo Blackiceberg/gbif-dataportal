@@ -58,7 +58,7 @@ If you install Geoserver as Binary it will be run by a jetty server rather than 
 ==Resources & libraries==
 ===Shapefile===
 Copy the files corresponding to the country shape file
- _[http://ogc.gbif.org/data/data/shapefiles/country.dbf country.dbf]  [http://ogc.gbif.org/data/data/shapefiles/country.fix country.fix]  [http://ogc.gbif.org/data/data/shapefiles/country.dbf country.ORG.dbf]  [http://ogc.gbif.org/data/data/shapefiles/country.prj country.prj]  [http://ogc.gbif.org/data/data/shapefiles/country.qix country.qix]  [http://ogc.gbif.org/data/data/shapefiles/country.shp country.shp]  [http://ogc.gbif.org/data/data/shapefiles/country.shx country.shx]_
+ _[http://ogc.gbif.org/data/data/shapefiles/country.dbf country.dbf]  [http://ogc.gbif.org/data/data/shapefiles/country.fix country.fix]  [http://ogc.gbif.org/data/data/shapefiles/country.ORG.dbf country.ORG.dbf]  [http://ogc.gbif.org/data/data/shapefiles/country.prj country.prj]  [http://ogc.gbif.org/data/data/shapefiles/country.qix country.qix]  [http://ogc.gbif.org/data/data/shapefiles/country.shp country.shp]  [http://ogc.gbif.org/data/data/shapefiles/country.shx country.shx]_
 to the shapefiles directory of the GeoServer {{{$GeoServer\data_dir\data\shapefiles}}}
 
 
