@@ -1,8 +1,10 @@
 #summary ToC
- * [apiPrinciples Guiding principles]
- * [apiAuthentication Authentication]
- * [apiResponseCodes Response codes]
- * [apiResponseFormats Response formats]
+ * About the REST API
+  * [apiPrinciples Guiding principles]
+  * [apiAuthentication Authentication]
+ * Common formats
+  * [apiResponseCodes Response codes]
+  * [apiResponseFormats Response formats]
  * Occurrence Related Resources
   * [apiOccurrence Operations on Occurrence]
   * [apiInterpretedOccurrence Operations on InterpretedOccurrence]
