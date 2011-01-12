@@ -3,11 +3,29 @@
  * [apiAuthentication Authentication]
  * [apiResponseCodes Response codes]
  * [apiResponseFormats Response formats]
- * Occurrence Records
+ * Occurrence Related Resources
   * [apiOccurrence Operations on Occurrence]
   * [apiInterpretedOccurrence Operations on InterpretedOccurrence]
   * [apiNormalizedOccurrence Operations on NormalizedOccurrence]
   * [apiVerbatimOccurrence Operations on VerbatimOccurrence]
   * [apiVerbatimTypeStatus Operations on TypeStatus]
- * Taxonomy
+ * Taxonomy Related Resources
   * [apiNameUsage Operations on NameUsage]
+  * [apiNameString Operations on NameString]
+ * Dataset Related Resources
+  * [apiDataset Operations on Dataset]
+  * [apiDatasetMetadata Operations on DatasetMetadata]
+ * Network Related Resources
+  * [apiDataset Operations on Participant]
+  * [apiNetwork Operations on Network]
+  * [apiInstitution Operations on Institution]
+  * [apiAgent Operations on Agent]
+  * [apiAgentRelationship Operations on AgentRelationship]
+  * [apiServiceAccessPoint Operations on ServiceAccessPoint]
+ * Multimedia Related Resources
+  * [apiImages Operations on Images]
+  * [apiVideo Operations on Video]
+  * [apiWebsite Operations on Website]
+ * Annotation Related Resources
+  * [apiAnnotation Operations on Annotation]
+  * [apiUser Operations on User]
