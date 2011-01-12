@@ -1,2 +1,13 @@
 #summary ToC
  * [apiPrinciples Guiding principles]
+ * [apiAuthentication Authentication]
+ * [apiResponseCodes Response codes]
+ * [apiResponseFormats Response formats]
+ * Occurrence Records
+    [apiOccurrence Operations on Occurrence]
+    [apiInterpretedOccurrence Operations on InterpretedOccurrence]
+    [apiNormalizedOccurrence Operations on NormalizedOccurrence]
+    [apiVerbatimOccurrence Operations on VerbatimOccurrence]
+    [apiVerbatimTypeStatus Operations on TypeStatus]
+ * Taxonomy
+    [apiNameUsage Operations on NameUsage]
