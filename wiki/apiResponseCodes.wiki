@@ -1,4 +1,3 @@
-#summary The response codes adhered to in the PortalAPI
 #sidebar apiTOC
 
 =Response codes=
