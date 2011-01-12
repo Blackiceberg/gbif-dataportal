@@ -1,3 +1,6 @@
+#summary The guiding principles adhered to in the PortalAPI
+#sidebar apiTOC
+
 =Guiding Principles=
 The PortalAPI is developed respecting the recommendations specified in the Resource Oriented Architecture by Leonard Richarson and Sam Ruby found in [http://oreilly.com/catalog/9780596529260 Building RESTful web services].   Particular attention is taken in the following areas.
 <dl>
