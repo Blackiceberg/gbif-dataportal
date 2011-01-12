@@ -1,0 +1,22 @@
+=Guiding Principles=
+The PortalAPI is developed respecting the recommendations specified in the Resource Oriented Architecture by Leonard Richarson and Sam Ruby found in [http://oreilly.com/catalog/9780596529260 Building RESTful web services].   Particular attention is taken in the following areas.
+<dl>
+<dt>Addressability</dt>
+<dd>Content negotiation is avoided where possible by making use of canonical URI forms.  E.g. use `/tutorial/1.en` returning a `307 redirect` to `/tutorial/1` rather than using `HTTP header ACCEPT-LANGUAGE`.</dd>   
+<dt>Caching</dt>
+<dd>Resource caching is promoted by providing a `Last-Modified` and `Cache-Control` header on all resource representations wherever possible, and supporting condition `HTTP GET` requests containing the header `If-Modified-Since` which might receive an `HTTP 304`.</dd>
+<dt>Statelessness</dt>
+<dd>The server will not store application state, ensuring requests are treated in isolation and allowing for scalability through load balancing.</dd>
+<dt>Connectedness</dt>
+<dd>Representations of resources will include links to additional resources of interest wherever possible; examples include a link to the next page of results or a link to a resource representing the verbatim data from which a derived view is calculated.</dd>
+<dt>Safety and idempotence</dt>
+<dd>`HTTP GET` and `HEAD` are considered _safe_, as they trigger no server changes.  `HTTP PUT` and `DELETE` are considered idempotent; making more than one request has the same affect as calling once.  Safe requests are idempotent by definition.</dd>
+<dt>Uniform interface</dt>
+<dd>HTTP response codes are strictly adhered to.  The unified interface offered through HTTP is used as follows:
+  * *`HTTP GET`*: Retrieve an instance.  Query parameters are used only when the response is the result of some server side algorithm (e.g. `/occurrence/search?dwc:scientificName=Puma concolor`) otherwise paths are used (e.g. `/occurrence/1234/annotation/2`).
+  * *`HTTP PUT`*: Create a new instance, or update the existing instance for the named resource.  Note that the client knows the complete identifier for the resource, otherwise an `HTTP POST` is used.
+  * *`HTTP POST`*: create a new resource with a server generated identifier by appending to a parent resource (“create a new Annotation resource on the parent Occurrence resource”) or where required, by calling a special “factory resource” to create the resource.  Overloading `HTTP POST` to perform RPC style operations (e.g. posting a dataset to `/dataset/publish`) is avoided, as is using parameters in the posted request (`action=”publish”`).  Instead a new resource is created which is considered the response to some process and treated as such with the uniform interface (e.g. `/publishEvent/dataset/123` returning a `303 see other` with `location` of `/dataset/123`).
+  * *`HTTP HEAD`*: returns the same as `GET`, but without the payload.  In particular the `Last-Modified` header is preserved.
+  * *`HTTP OPTIONS`*: Lists the available options on the resource to the authenticated user, if any.
+  * *`HTTP DELETE`*: Deletes the resources</dd>
+</dl>
