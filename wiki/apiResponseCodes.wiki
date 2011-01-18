@@ -1,6 +1,9 @@
-#sidebar apiTOC
+#sidebar TableOfContents
+This section provides reference information about the response codes in use with the PortalAPI
 
-=Response codes=
+==List of Response codes==
+The following table lists PortalAPI response codes and their definitions.
+
 || * Code * || * Definition * || * Purpose * ||
 || `200`	|| `OK` || The request was accepted and the response entity-body contains the resource representation, if any is applicable ||
 || `201`	|| `Created` || The request was accepted and resulted in the creation of a new resource.  The response Location header contains the created resource URI ||
